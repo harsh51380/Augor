@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Augur Dashboard</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #f4f7fa;
+      color: #333;
+    }
+
+    header {
+      background-color: #1f2937;
+      padding: 1rem;
+      text-align: center;
+      color: white;
+      font-size: 1.5rem;
+    }
+
+    .container {
+      padding: 2rem;
+      display: grid;
+      gap: 2rem;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    }
+
+    .card {
+      background-color: white;
+      border-radius: 1rem;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+      padding: 1.5rem;
+      transition: transform 0.2s ease-in-out;
+    }
+
+    .card:hover {
+      transform: scale(1.03);
+    }
+
+    .card h2 {
+      margin-top: 0;
+    }
+
+    .metric {
+      font-size: 1.1rem;
+      margin: 0.3rem 0;
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    Augur Distributor Dashboard
+  </header>
+  <div class="container" id="dashboard"></div>
+
+  <script>
+    const mockData = [
+      {
+        name: "Distributor A",
+        shippedLastMonth: 1200,
+        forecastNextMonth: 1350,
+        ytdAverage: 1150,
+        status: "On Track"
+      },
+      {
+        name: "Distributor B",
+        shippedLastMonth: 980,
+        forecastNextMonth: 1100,
+        ytdAverage: 1020,
+        status: "Needs Attention"
+      },
+      {
+        name: "Distributor C",
+        shippedLastMonth: 1500,
+        forecastNextMonth: 1400,
+        ytdAverage: 1450,
+        status: "Above Target"
+      }
+    ];
+
+    const dashboard = document.getElementById("dashboard");
+
+    mockData.forEach((dist) => {
+      const card = document.createElement("div");
+      card.className = "card";
+      card.innerHTML = `
+        <h2>${dist.name}</h2>
+        <div class="metric">Shipped Last Month: <strong>${dist.shippedLastMonth}</strong></div>
+        <div class="metric">Forecast Next Month: <strong>${dist.forecastNextMonth}</strong></div>
+        <div class="metric">YTD Average: <strong>${dist.ytdAverage}</strong></div>
+        <div class="metric">Status: <strong>${dist.status}</strong></div>
+      `;
+      dashboard.appendChild(card);
+    });
+  </script>
+</body>
+
+</html>
